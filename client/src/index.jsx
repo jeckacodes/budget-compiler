@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import List from './components/List.jsx';
 import Graph from './components/Graph.jsx';
-import data from './sampledata.js';
+import listData from './sampledata.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,9 +13,9 @@ class App extends React.Component {
       project: '',
       newLine: '',
       newPrice: '',
-      items: data
+      items: listData
     }
-    this.items = data; // [{lineItem: 'hi', price: '20'}, {lineItem: 'hello', price: '10'}];
+    this.items = listData; // [{lineItem: 'hi', price: '20'}, {lineItem: 'hello', price: '10'}];
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onClick = this.onClick.bind(this);

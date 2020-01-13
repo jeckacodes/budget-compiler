@@ -1,4 +1,4 @@
-const data = [
+const listData = [
   {
     lineItem: 'Painting',
     price: 2500,
@@ -29,4 +29,4 @@ const data = [
   }
 ];
 
-export default data;
+export default listData;

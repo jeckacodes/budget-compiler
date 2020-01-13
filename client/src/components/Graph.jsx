@@ -14,7 +14,7 @@ class Graph extends React.Component {
       >
         <VictoryBar
           data={this.props.data}
-          x='lineItem'
+          x='option'
           y='price'
         />
       </VictoryChart>
