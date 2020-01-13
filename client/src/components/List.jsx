@@ -12,7 +12,6 @@ class List extends React.Component {
   render() {
     return (
       <div>
-        <h4>Project Name</h4>
         <h3> Budget Line Items </h3>
         <Feed>
           There are { this.props.items.length } line items.
