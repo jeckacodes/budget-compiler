@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import List from './components/List.jsx';
 import Graph from './components/Graph.jsx';
+import data from './sampledata.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,9 +13,9 @@ class App extends React.Component {
       project: '',
       newLine: '',
       newPrice: '',
-      items: [{lineItem: 'hi', price: 20}, {lineItem: 'hello', price: 10}]
+      items: data
     }
-    this.items = [{lineItem: 'hi', price: 20}, {lineItem: 'hello', price: 10}];
+    this.items = data; // [{lineItem: 'hi', price: '20'}, {lineItem: 'hello', price: '10'}];
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onClick = this.onClick.bind(this);
@@ -56,7 +57,6 @@ class App extends React.Component {
 
   onClick(event) {
     event.preventDefault();
-    alert('clicked');
     this.setState({ view: 'graph' });
   }
 
@@ -74,7 +74,8 @@ class App extends React.Component {
       </div>)
     } else if (this.state.view === 'graph') {
       return (<div>
-        <Graph />
+        <h3>Budget Analytics</h3>
+        <Graph data={this.state.items} />
       </div>)
     }
   }
