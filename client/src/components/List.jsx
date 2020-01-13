@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ListItem from './ListItem.jsx';
+import BlankCard from './BlankCard.jsx';
 
 class List extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class List extends React.Component {
         <Feed>
           There are { this.props.items.length } line items.
           { this.props.items.map(item => <ListItem item={item}/>)}
+          <BlankCard onChange={this.props.onChange} onItemSubmit={this.props.onItemSubmit} newLine={this.props.newLine} newPrice={this.props.newPrice}/>
         </Feed>
       </div>
     )
@@ -28,4 +30,6 @@ const Feed = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: #ebecf0;
+  width: 272px;
 `;

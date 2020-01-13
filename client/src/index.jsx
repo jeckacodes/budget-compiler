@@ -10,11 +10,15 @@ class App extends React.Component {
     this.state = {
       view: 'list',
       project: '',
-      items: [{description: 'hi'}, {description: 'hello'}]
+      newLine: '',
+      newPrice: '',
+      items: [{lineItem: 'hi', price: 20}, {lineItem: 'hello', price: 10}]
     }
+    this.items = [{lineItem: 'hi', price: 20}, {lineItem: 'hello', price: 10}];
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onClick = this.onClick.bind(this);
+    this.onItemSubmit = this.onItemSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -36,12 +40,18 @@ class App extends React.Component {
   }
 
   onChange(event) {
-    this.setState({ project: event.target.value });
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   onSubmit(event) {
     alert('submitted');
     event.preventDefault();
+  }
+
+  onItemSubmit(event) {
+    event.preventDefault();
+    this.items.push({ lineItem: this.state.newLine, price: this.state.newPrice });
+    this.setState({ items: this.items });
   }
 
   onClick(event) {
@@ -59,7 +69,7 @@ class App extends React.Component {
           </label>
         </form>
         <h1>Item List</h1>
-        <List items={this.state.items}/>
+        <List items={this.state.items} onChange={this.onChange} onItemSubmit={this.onItemSubmit} newLine={this.state.newLine} newPrice={this.state.newPrice} />
         <button onClick={this.onClick} >Graph It!</button>
       </div>)
     } else if (this.state.view === 'graph') {
