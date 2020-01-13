@@ -1,4 +1,5 @@
 import React from 'react';
+import { VictoryBar, VictoryChart } from 'victory';
 
 class Graph extends React.Component {
   constructor(props) {
@@ -8,9 +9,15 @@ class Graph extends React.Component {
 
   render() {
     return (
-      <div>
-        Graph goes here
-      </div>
+      <VictoryChart
+        domainPadding={30}
+      >
+        <VictoryBar
+          data={this.props.data}
+          x='lineItem'
+          y='price'
+        />
+      </VictoryChart>
     )
   }
 }

@@ -1,6 +1,6 @@
 const data = [
   {
-    line item: 'Painting',
+    lineItem: 'Painting',
     price: 2500,
     options: [
       {
@@ -14,7 +14,7 @@ const data = [
     ]
   },
   {
-    line item: 'Plumbing',
+    lineItem: 'Plumbing',
     price: 1000,
     options: [
       {

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Option from './Option.jsx';
 
 const ListItem = (props) => (
   <Card>
@@ -9,6 +10,9 @@ const ListItem = (props) => (
     <span>
       { props.item.price }
     </span>
+    <div>
+      { props.item.options.map(option => <Option option={option}/>)}
+    </div>
   </Card>
 )
 
