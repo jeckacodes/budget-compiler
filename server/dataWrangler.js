@@ -6,7 +6,7 @@ function flattenData(listData) {
   var result = [];
   for (let obj of listData) {
     if (obj.options.length === 0) {
-      staticTotal += obj.price;
+      staticTotal += Number(obj.price);
     } else {
       result.push(obj.options);
     }
@@ -31,7 +31,7 @@ function compileBudgets(flattenedData) {
         for (let i = 0; i < arr[0].length; i++) {
           result.push({
             option: arr[0][i].option + '\n' + remainingBudgets[budget].option,
-            price: arr[0][i].price + remainingBudgets[budget].price });
+            price: Number(arr[0][i].price) + Number(remainingBudgets[budget].price) });
         }
       }
       for (let budget of result) {
@@ -48,7 +48,7 @@ var compiledBudgets = compileBudgets(flattenedData);
 
 
 const sortBudgets = (budgetList) => {
-  debugger;
+  console.log(budgetList);
   var concat = function () {
     return [].concat.apply([], arguments);
   };
@@ -68,4 +68,4 @@ const sortBudgets = (budgetList) => {
 
 var sortedBudgets = sortBudgets(compiledBudgets);
 
-module.exports = { sortedBudgets };
+module.exports = { flattenData, compileBudgets, sortBudgets };

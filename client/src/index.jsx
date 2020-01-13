@@ -16,10 +16,12 @@ class App extends React.Component {
       items: listData
     }
     this.items = listData; // [{lineItem: 'hi', price: '20'}, {lineItem: 'hello', price: '10'}];
+    this.graphData = [];
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onClick = this.onClick.bind(this);
     this.onItemSubmit = this.onItemSubmit.bind(this);
+    this.postGraph = this.postGraph.bind(this);
   }
 
   componentDidMount() {
@@ -40,6 +42,25 @@ class App extends React.Component {
     });
   }
 
+  postGraph(data) {
+    $.ajax({
+      method: 'POST',
+      url: '/graph',
+      data: {data},
+      success: (data) => {
+        this.graphData = data;
+        console.log('post success')
+      },
+      error: (err) => {
+        console.log('err', err);
+      }
+    })
+    .done(() => {
+      console.log('post done');
+      this.setState({ view: 'graph' });
+    })
+  }
+
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
@@ -57,7 +78,7 @@ class App extends React.Component {
 
   onClick(event) {
     event.preventDefault();
-    this.setState({ view: 'graph' });
+    this.postGraph(this.state.items);
   }
 
   render () {
@@ -68,14 +89,14 @@ class App extends React.Component {
             <input type='text' name='project' value={this.state.project} placeholder='Project Name...' onChange={this.onChange} />
           </label>
         </form>
-        <h1>Item List</h1>
+        <h1>{this.state.project}</h1>
         <List items={this.state.items} onChange={this.onChange} onItemSubmit={this.onItemSubmit} newLine={this.state.newLine} newPrice={this.state.newPrice} />
         <button onClick={this.onClick} >Graph It!</button>
       </div>)
     } else if (this.state.view === 'graph') {
       return (<div>
         <h3>Budget Analytics</h3>
-        <Graph data={this.state.items} />
+        <Graph data={this.graphData} />
       </div>)
     }
   }
