@@ -29,7 +29,7 @@ const Card = styled.div`
   border-radius: 6px;
   background-color: #fff;
   box-shadow: 0 1px 0 rgba(9,30,66,.25);
-  margin: 6px;
+  margin: 6px 12px;
   padding: 6px;
   &:hover {
     background-color: #f4f4f8;

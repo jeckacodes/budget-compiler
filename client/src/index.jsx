@@ -13,9 +13,9 @@ class App extends React.Component {
       view: 'list',
       project: '',
       target: '',
-      items: listData
+      items: []
     }
-    this.items = listData;
+    this.items = [];
     this.graphData = [];
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -25,19 +25,34 @@ class App extends React.Component {
     this.postGraph = this.postGraph.bind(this);
   }
 
-  componentDidMount() {
-    //
-  }
-
-  getProject() {
+  getProject(projectName) {
     $.ajax({
-      url: '/items',
+      method: 'GET',
+      url: `/list/${projectName}`,
       success: (data) => {
-        this.setState({
-          items: data
-        })
+        console.log('get success')
+        if (data) {
+          this.items = data;
+          this.setState({
+            items: data
+          });
+        }
       },
       error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+  postProject(name, listItems) {
+    $.ajax({
+      method: 'POST',
+      url: '/list',
+      data: {name: name, listItems: listItems},
+      success: (data) => {
+        console.log('post success');
+      },
+      error: (data) => {
         console.log('err', err);
       }
     });
@@ -57,7 +72,7 @@ class App extends React.Component {
     })
     .done(() => {
       this.setState({ view: 'graph' });
-    })
+    });
   }
 
   onChange(event) {
@@ -65,8 +80,8 @@ class App extends React.Component {
   }
 
   onSubmit(event) {
-    alert('submitted');
     event.preventDefault();
+    this.getProject(this.state.project);
   }
 
   onItemSubmit(obj) {
@@ -87,6 +102,7 @@ class App extends React.Component {
   onClick(event) {
     event.preventDefault();
     this.postGraph(this.state.items);
+    this.postProject(this.state.project, this.state.items);
   }
 
   render () {
@@ -96,10 +112,12 @@ class App extends React.Component {
           <label>
             <input type='text' name='project' value={this.state.project} placeholder='Project Name...' onChange={this.onChange} />
           </label>
+        </form>
+        {/* <form>
           <label>
             <input type='text' name='target' value={this.state.target} placeholder='Target budget...' onChange={this.onChange} />
           </label>
-        </form>
+        </form> */}
         <h1>{this.state.project}</h1>
         <List items={this.state.items}
           onChange={this.onChange}
