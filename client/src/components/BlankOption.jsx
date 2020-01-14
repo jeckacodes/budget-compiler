@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-class BlankCard extends React.Component {
+class BlankOption extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lineItem: '',
-      price: '',
-      options: []
+      option: '',
+      price: ''
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -19,11 +18,10 @@ class BlankCard extends React.Component {
 
   onSubmit (event) {
     event.preventDefault();
-    this.props.onItemSubmit(this.state);
+    this.props.onSubmit(this.state, this.props.parent);
     this.setState({
-      lineItem: '',
-      price: '',
-      options: []
+      option: '',
+      price: ''
     });
   }
 
@@ -31,7 +29,7 @@ class BlankCard extends React.Component {
     return (
       <Form onSubmit={this.onSubmit}>
         <label>
-          <Input placeholder='Add line item...' name='lineItem' value={this.state.lineItem} onChange={this.onChange}/>
+          <Input placeholder='Add line item...' name='option' value={this.state.option} onChange={this.onChange}/>
         </label>
         <label>
           <Input placeholder='$...' name='price' value={this.state.price} onChange={this.onChange} />
@@ -42,7 +40,7 @@ class BlankCard extends React.Component {
   }
 }
 
-export default BlankCard;
+export default BlankOption;
 
 const Form = styled.form`
   display: flex;

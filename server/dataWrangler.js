@@ -5,7 +5,7 @@ var staticTotal = 0;
 function flattenData(listData) {
   var result = [];
   for (let obj of listData) {
-    if (obj.options.length === 0) {
+    if (obj.options === undefined) {
       staticTotal += Number(obj.price);
     } else {
       result.push(obj.options);
@@ -15,8 +15,6 @@ function flattenData(listData) {
 }
 
 var flattenedData = flattenData(listData);
-// console.log(flattenedData);
-// console.log(staticTotal);
 
 function compileBudgets(flattenedData) {
   function allPossibleBudgets(arr) {
@@ -44,7 +42,6 @@ function compileBudgets(flattenedData) {
 }
 
 var compiledBudgets = compileBudgets(flattenedData);
-// console.log(compiledBudgets);
 
 
 const sortBudgets = (budgetList) => {
