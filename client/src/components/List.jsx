@@ -15,8 +15,13 @@ class List extends React.Component {
         <h3> Budget Line Items </h3>
         <Feed>
           There are { this.props.items.length } line items.
-          { this.props.items.map(item => <ListItem item={item}/>)}
-          <BlankCard onChange={this.props.onChange} onItemSubmit={this.props.onItemSubmit} newLine={this.props.newLine} newPrice={this.props.newPrice}/>
+          { this.props.items.map(item => <ListItem item={item}
+            onChange={this.props.onChange}
+            onOptionSubmit={this.props.onOptionSubmit} />)}
+          <BlankCard onChange={this.props.onChange}
+            onItemSubmit={this.props.onItemSubmit}
+            newLine={this.props.newLine}
+            newPrice={this.props.newPrice}/>
         </Feed>
       </div>
     )
@@ -30,5 +35,5 @@ const Feed = styled.div`
   flex-direction: column;
   justify-content: center;
   background-color: #ebecf0;
-  width: 272px;
+  width: 360px;
 `;

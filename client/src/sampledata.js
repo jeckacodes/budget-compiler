@@ -1,21 +1,21 @@
 const listData = [
   {
     lineItem: 'Painting',
-    price: 2500,
+    price: null,
     options: [
       {
         option: 'Exquisite Finishes',
         price: 2500
       },
       {
-        option: 'Baldwin',
+        option: 'Tony McHorse',
         price: 2200
       }
     ]
   },
   {
     lineItem: 'Plumbing',
-    price: 1000,
+    price: null,
     options: [
       {
         option: 'Baldwin',

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import styled from 'styled-components';
 import List from './components/List.jsx';
 import Graph from './components/Graph.jsx';
 import listData from './sampledata.js';
@@ -11,16 +12,16 @@ class App extends React.Component {
     this.state = {
       view: 'list',
       project: '',
-      newLine: '',
-      newPrice: '',
+      target: '',
       items: listData
     }
-    this.items = listData; // [{lineItem: 'hi', price: '20'}, {lineItem: 'hello', price: '10'}];
+    this.items = listData;
     this.graphData = [];
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onClick = this.onClick.bind(this);
     this.onItemSubmit = this.onItemSubmit.bind(this);
+    this.onOptionSubmit = this.onOptionSubmit.bind(this);
     this.postGraph = this.postGraph.bind(this);
   }
 
@@ -49,14 +50,12 @@ class App extends React.Component {
       data: {data},
       success: (data) => {
         this.graphData = data;
-        console.log('post success')
       },
       error: (err) => {
         console.log('err', err);
       }
     })
     .done(() => {
-      console.log('post done');
       this.setState({ view: 'graph' });
     })
   }
@@ -70,9 +69,18 @@ class App extends React.Component {
     event.preventDefault();
   }
 
-  onItemSubmit(event) {
-    event.preventDefault();
-    this.items.push({ lineItem: this.state.newLine, price: this.state.newPrice });
+  onItemSubmit(obj) {
+    this.items.push(obj);
+    this.setState({ items: this.items });
+  }
+
+  onOptionSubmit(option, parent) {
+    for (let item of this.items) {
+      if (item.lineItem === parent) {
+        item.price = '';
+        item.options.push(option);
+      }
+    }
     this.setState({ items: this.items });
   }
 
@@ -88,18 +96,32 @@ class App extends React.Component {
           <label>
             <input type='text' name='project' value={this.state.project} placeholder='Project Name...' onChange={this.onChange} />
           </label>
+          <label>
+            <input type='text' name='target' value={this.state.target} placeholder='Target budget...' onChange={this.onChange} />
+          </label>
         </form>
         <h1>{this.state.project}</h1>
-        <List items={this.state.items} onChange={this.onChange} onItemSubmit={this.onItemSubmit} newLine={this.state.newLine} newPrice={this.state.newPrice} />
+        <List items={this.state.items}
+          onChange={this.onChange}
+          onItemSubmit={this.onItemSubmit}
+          onOptionSubmit={this.onOptionSubmit} />
         <button onClick={this.onClick} >Graph It!</button>
       </div>)
     } else if (this.state.view === 'graph') {
       return (<div>
+        <h1>{this.state.project}</h1>
         <h3>Budget Analytics</h3>
-        <Graph data={this.graphData} />
+        <Graph data={this.graphData} y={this.state.target} />
       </div>)
     }
   }
 }
+
+const Top = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+`;
 
 ReactDOM.render(<App />, document.getElementById('app'));
