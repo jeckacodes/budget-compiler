@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/mvp', {useNewUrlParser: true});
 
 var db = mongoose.connection;
 
@@ -11,21 +11,42 @@ db.once('open', function() {
   console.log('mongoose connected successfully');
 });
 
-var itemSchema = mongoose.Schema({
-  quantity: Number,
-  description: String
+var optionSchema = mongoose.Schema({
+  option: String,
+  price: String
+})
+
+var listSchema = mongoose.Schema({
+  lineItem: String,
+  price: String,
+  options: [optionSchema]
+})
+
+var projectSchema = mongoose.Schema({
+  name: String,
+  children: [listSchema]
 });
 
-var Item = mongoose.model('Item', itemSchema);
+var Project = mongoose.model('Project', projectSchema);
+var List = mongoose.model('List', listSchema);
+var Option = mongoose.model('Option', optionSchema);
 
-var selectAll = function(callback) {
-  Item.find({}, function(err, items) {
-    if(err) {
-      callback(err, null);
-    } else {
-      callback(null, items);
-    }
-  });
+var insertDocuments = function(name, listItems) {
+  var newProject = new Project({name: name, children: []});
+  for (let item of listItems) {
+    console.log('item', item)
+    let newItem = new List(item);
+    newProject.children.push(newItem);
+  }
+  newProject.save()
+    .catch((err) => console.log(err));
 };
 
-module.exports.selectAll = selectAll;
+var findProject = function(query) {
+  return Project.findOne(query, { _id: 0, __v: 0});
+};
+
+module.exports = {
+  insertDocuments,
+  findProject
+};

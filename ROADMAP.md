@@ -3,4 +3,5 @@ When the user submits, the app sends a get request to the database. If the proje
 2. Implement the list component. The list component displays the data passed to it, if any, but always has a box at the end for adding another item.  First, implement that blank box.
 3. Implement options in the List view.
 4. When the Graph button is clicked, it should send data to the server. The server sends the data to the database to be inserted/updated (implement later), but it also generates and returns data for use in the Graph view. One thing the server does is convert string price values to numbers.
-5. Set up Mongoose schema so we can be confident in the shape of our data.
+5. Set up Mongoose schema and connect database.
+6. Database is connected, but each Graph generation adds a duplicate Mongoose document. Need to use Update where appropriate.
