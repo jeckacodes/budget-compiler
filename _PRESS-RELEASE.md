@@ -16,35 +16,26 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
 
-## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
-  Budget Compiler
-
-## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
-  For anyone who has to choose between many options based on price
+## Budget Compiler ##
+  > A service that helps you make budget decisions, for anyone who has to choose between many options based on price.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
-  Budget Compiler is for projects with budgets that contain many line items, where some or all line items have different options. For example, suppose you're remodeling your kitchen. You have two bids for painting, three bids for different kinds of countertops, and one bid for cabinets. Budget Compiler helps you make a decision based on your budget and the options you love.
+  > Budget Compiler is for projects with budgets that contain many line items, where some or all line items have different options. For example, suppose you're remodeling your kitchen. You have two bids for painting, three bids for different kinds of countertops, and one bid for cabinets. Budget Compiler helps you make a decision based on your budget and the options you love.
 
 ## Problem ##
-  > Describe the problem your product solves.
   When planning a project, decision paralysis can be huge. Which options should we embrace and which should we discard?  The problem is compounded in projects with many parts, when many cost categories have multiple options. How can we easily compare all our possible budgets?
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
   Budget Compiler allows you to compare your options visually, seeing which ones meet your target budget.  It presents the information in such a way that it's easy for you to make your decision.
 
-## Quote from You ##
-  > A quote from a spokesperson in your company.
+<!--## Quote from You ##
+  > A quote from a spokesperson in your company. -->
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
   Simply input your cost categories and options, and Budget Compiler will generate analytics for you!
 
-## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+<!--## Customer Quote ##
+  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.-->
 
-## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+<!--## Closing and Call to Action ##
+  > Wrap it up and give pointers where the reader should go next.-->
